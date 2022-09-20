@@ -1,0 +1,10 @@
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\bin\Debug\netcoreapp3.1\BarberAppDLL.deps.json
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\bin\Debug\netcoreapp3.1\BarberAppDLL.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\bin\Debug\netcoreapp3.1\BarberAppDLL.pdb
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.AssemblyInfo.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAppDLL\obj\Debug\netcoreapp3.1\BarberAppDLL.pdb
