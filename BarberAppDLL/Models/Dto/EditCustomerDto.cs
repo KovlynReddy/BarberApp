@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BarberAppDLL.Models.Dto
 {
-    public class EditCustomerDto
+    public class EditCustomerDto : CreateCustomerDto
     {
     }
 }

@@ -10,7 +10,7 @@ using BarberAppDLL.Models.DomainModel;
 
 namespace BarberAPI.Controllers
 {
-    [Route("api/Deals")]
+    [Route("api/[Controller]/[Action]")]
     [ApiController]
     public class DealsController : Controller
     {
@@ -23,6 +23,7 @@ namespace BarberAPI.Controllers
         }
 
         // GET: Deals
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Deals.ToListAsync());
@@ -139,7 +140,7 @@ namespace BarberAPI.Controllers
 
         // POST: Deals/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var deal = await _context.Deals.FindAsync(id);

@@ -1,10 +1,12 @@
 ﻿using BarberAppDLL.Dto;
 using BarberAppDLL.Models.DomainModel;
+using BarberAppDLL.Models.Dto;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BarberWebApp.Services
@@ -121,7 +123,41 @@ namespace BarberWebApp.Services
                 return apiresponse;
             }
 
+        }   
+
+        public async Task<List<CreateBarberDto>> Create(CreateBarberDto newbarber)
+        {
+            IEnumerable<CreateBarberDto> barbers = null;
+
+            string apiUrl = "https://localhost:44337/api/Barbers/CreateDto";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var newbarberJson = Newtonsoft.Json.JsonConvert.SerializeObject(newbarber);
+                var payload = new StringContent(newbarberJson, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage result = await client.PostAsync(apiUrl,payload);
+
+                //result.EnsureSuccessStatusCode();
+
+                var apiresponse = new List<CreateBarberDto>();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = await result.Content.ReadAsAsync<List<CreateBarberDto>>();
+                    //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
+                    apiresponse = data;
+                }
+
+                return apiresponse;
+            }
+
         }
+
 
         //private readonly string _baseUrl;
         //private readonly IAuthenticationManager _authenticationManager;

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BarberAppDLL.Models.Dto
 {
-    public class CreateBookingDto
+    public class CreateBookingDto : BaseDto
     {
+        public DateTime BookingTime { get; set; }
     }
 }

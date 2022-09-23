@@ -6,5 +6,7 @@ namespace BarberAppDLL.Models.Dto
 {
     public class EditBarberDto
     {
+        public string BarberEmail { get; set; }
+        public string BarberName { get; set; }
     }
 }

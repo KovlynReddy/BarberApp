@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using BarberAPI.Data.DB;
 using BarberAppDLL.Models.DomainModel;
 using System.Net.Http;
+using BarberAppDLL.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarberAPI.Controllers
 {
-    [Route("api/Barbers")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BarbersController : Controller
     {
@@ -61,29 +63,50 @@ namespace BarberAPI.Controllers
             return View(barber);
         }
 
-        // GET: Barbers/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
 
         // POST: Barbers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AllowAnonymous]
+        [Route("~/api/Barbers/Create")]
+        [Route("~/api/Barbers/Create/{BarberEmail}/{BarberName}")]
+        //[Route("api/Barbers/Create?BarberEmail={BarberEmail}&BarberName={BarberName}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BarberName,AddressGuid,AverageRating,Status,Id,ModelGUID,IsDeleted,CreatedDateTime,DeletedDateTime,CompletedDateTime,CreatorId")] Barber barber)
+        public async Task<IActionResult> Create( string BarberEmail,string BarberName)//[FromBody]CreateBarberDto barber)
         {
-            if (ModelState.IsValid)
+            Barber newBarber = new Barber
             {
-                _context.Add(barber);
+                BarberEmail = BarberEmail,//barber.BarberEmail,//
+                BarberName = BarberName,//barber.BarberName,//
+                ModelGUID = new Guid().ToString(),
+                CreatedDateTime = new DateTime().ToString()
+            };
+                _context.Add(newBarber);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(barber);
+                return Ok(newBarber);
+        }
+
+        [AllowAnonymous]
+        [Route("~/api/Barbers/CreateDto")]
+        [Route("~/api/Barbers/CreateDto/{BarberEmail}/{BarberName}")]
+        //[Route("api/Barbers/Create?BarberEmail={BarberEmail}&BarberName={BarberName}")]
+        [HttpPost]
+        public async Task<IActionResult> CreateDto([FromBody]CreateBarberDto barber)
+        {
+            Barber newBarber = new Barber
+            {
+                BarberEmail = barber.BarberEmail,//
+                BarberName = barber.BarberName,//
+                ModelGUID = new Guid().ToString(),
+                CreatedDateTime = new DateTime().ToString()
+            };
+            _context.Add(newBarber);
+            await _context.SaveChangesAsync();
+            return Ok(newBarber);
         }
 
         // GET: Barbers/Edit/5
+        [HttpPost]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -102,7 +125,7 @@ namespace BarberAPI.Controllers
         // POST: Barbers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BarberName,AddressGuid,AverageRating,Status,Id,ModelGUID,IsDeleted,CreatedDateTime,DeletedDateTime,CompletedDateTime,CreatorId")] Barber barber)
         {

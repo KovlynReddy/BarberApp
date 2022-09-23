@@ -27,11 +27,18 @@ namespace BarberAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMvcCore();
+            services.AddControllers();
+            services.AddHttpClient();
+            services.AddRouting();
+
+
             services.AddDbContext<BarberContext>(opt=>opt.UseSqlServer
             (Configuration.GetConnectionString("BarberConnection"))
             );
 
-            services.AddControllers();
+
 
             //services.AddScoped<IBarber,BarberRepo>;
         }
@@ -45,14 +52,19 @@ namespace BarberAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseHttpMethodOverride();
             app.UseRouting();
-
-            app.UseAuthorization();
+                
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
+                //endpoints.MapControllers();
+
+                //endpoints.MapControllerRoute(
+                //    name : "BarberApi",
+                //    pattern: "api/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
