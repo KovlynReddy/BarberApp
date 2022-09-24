@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Newtryx.Services
@@ -43,12 +44,11 @@ namespace Newtryx.Services
 
         }
 
-        public async Task<List<LogVisit>> CreateBooking()
+        public async Task<List<CreateBarberDto>> Create(CreateBookingDto newBooking)
         {
-            IEnumerable<LogVisit> bookings = null;
+            IEnumerable<CreateBarberDto> bookings = null;
 
-
-            string apiUrl = "https://localhost:44337/api/Barbers";
+            string apiUrl = "https://localhost:44337/api/Booking/CreateDto";
 
             using (HttpClient client = new HttpClient())
             {
@@ -56,16 +56,20 @@ namespace Newtryx.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                var newbarberJson = Newtonsoft.Json.JsonConvert.SerializeObject(newBooking);
+                var payload = new StringContent(newbarberJson, Encoding.UTF8, "application/json");
 
-                var apiresponse = new List<LogVisit>();
+                HttpResponseMessage result = await client.PostAsync(apiUrl, payload);
 
-                if (response.IsSuccessStatusCode)
+                //result.EnsureSuccessStatusCode();
+
+                var apiresponse = new List<CreateBarberDto>();
+
+                if (result.IsSuccessStatusCode)
                 {
-                    var data = await response.Content.ReadAsAsync<List<LogVisit>>();
+                    var data = await result.Content.ReadAsAsync<List<CreateBarberDto>>();
                     //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
                     apiresponse = data;
-                    //Newtonsoft.Json.JsonConvert.DeserializeObject(data);
                 }
 
                 return apiresponse;

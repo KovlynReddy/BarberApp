@@ -12,10 +12,18 @@ namespace BarberWebApp.Controllers
 {
     public class BarberController : Controller
     {
-        // GET: BarberController
-        public ActionResult Index()
+        public BarberService _barberService { get; set; }
+
+        public BarberController()
         {
-            return View();
+            _barberService = new BarberService();
+        }
+        // GET: BarberController
+        public async Task<IActionResult> Index()
+        {
+            var allBarbers = await _barberService.GetAll(); 
+
+            return View("ViewListBarbers",allBarbers);
         }
 
         // GET: BarberController/Details/5
@@ -36,8 +44,8 @@ namespace BarberWebApp.Controllers
         {
             try
             {
-                BarberService service = new BarberService();
-                var result = await service.Create(newbarber);
+              
+                var result = await _barberService.Create(newbarber);
                 return RedirectToAction(nameof(Index));
             }
             catch

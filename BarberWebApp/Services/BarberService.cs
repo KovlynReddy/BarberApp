@@ -13,11 +13,11 @@ namespace BarberWebApp.Services
 {
     public class BarberService
     {
-        public async Task<List<Barber>> Get()
+        public async Task<List<Barber>> GetAll()
         {
             IEnumerable<Barber> barbers = null;
 
-            string apiUrl = "https://localhost:44337/api/Barbers";
+            string apiUrl = "https://localhost:44337/api/Barbers/GetAll";
 
             using (HttpClient client = new HttpClient())
             {

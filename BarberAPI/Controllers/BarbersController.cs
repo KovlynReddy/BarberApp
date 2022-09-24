@@ -86,7 +86,16 @@ namespace BarberAPI.Controllers
                 return Ok(newBarber);
         }
 
-        [AllowAnonymous]
+        [HttpGet]
+        [Route("~/api/Barbers/GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _context.Barbers.ToListAsync();
+
+            return Ok(result);
+        }
+
+            [AllowAnonymous]
         [Route("~/api/Barbers/CreateDto")]
         [Route("~/api/Barbers/CreateDto/{BarberEmail}/{BarberName}")]
         //[Route("api/Barbers/Create?BarberEmail={BarberEmail}&BarberName={BarberName}")]

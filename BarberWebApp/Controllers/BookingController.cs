@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BarberAppDLL.Models.Dto;
+using BarberAppDLL.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtryx.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,11 @@ namespace BarberWebApp.Controllers
 {
     public class BookingController : Controller
     {
+        public BookingService _bookingService { get; set; }
+        public BookingController()
+        {
+            _bookingService = new BookingService();
+        }
         // GET: BookingController
         public ActionResult Index()
         {
@@ -24,16 +32,30 @@ namespace BarberWebApp.Controllers
         // GET: BookingController/Create
         public ActionResult Create()
         {
-            return View();
+            CreateBookingViewModel model = new CreateBookingViewModel();
+            model.Barbers = new List<string> { 
+            "Barber1","Barber2"
+            };
+            return View(model);
         }
 
         // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateBookingViewModel newBooking)
         {
+            CreateBookingDto newBookingDto = new CreateBookingDto
+            {
+                Reason = newBooking.Reason, 
+                BookDateTime = newBooking.BookingDateTime,
+                BookDateTimeString = newBooking.BookingDateTime.ToString(),
+                Request = newBooking.Request
+            };
+
             try
             {
+                _bookingService.Create(newBookingDto);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

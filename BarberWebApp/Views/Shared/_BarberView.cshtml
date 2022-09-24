@@ -1,0 +1,36 @@
+﻿@model BarberAppDLL.Models.DomainModel.Barber
+
+<div class="jumbotron" style="padding:3px" >
+    <h2>@Model.BarberName</h2>
+    <h4>@Model.ModelGUID</h4>
+    <h5>@Model.Id</h5>
+    <dl class="row">
+
+        <dt class="col-6">
+            @Html.DisplayNameFor(model => model.BarberEmail)
+        </dt>
+        <dd class="col-6">
+            @Html.DisplayFor(model => model.BarberEmail)
+        </dd>
+        <dt class="col-6">
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </dt>
+        <dd class="col-6">
+            @Html.DisplayFor(model => model.AverageRating)
+        </dd>
+        <dt class="col-6">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-6">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-6">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class="col-6">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+

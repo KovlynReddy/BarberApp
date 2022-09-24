@@ -179,3 +179,8 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcorea
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Deals\Details.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Deals\Edit.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Deals\Index.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\Create.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\Delete.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\Details.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\Edit.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\Razor\Views\Bookings\Index.cshtml.g.cs
