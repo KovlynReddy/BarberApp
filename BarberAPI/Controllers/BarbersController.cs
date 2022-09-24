@@ -64,9 +64,7 @@ namespace BarberAPI.Controllers
         }
 
 
-        // POST: Barbers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [AllowAnonymous]
         [Route("~/api/Barbers/Create")]
         [Route("~/api/Barbers/Create/{BarberEmail}/{BarberName}")]
@@ -95,7 +93,7 @@ namespace BarberAPI.Controllers
             return Ok(result);
         }
 
-            [AllowAnonymous]
+        [AllowAnonymous]
         [Route("~/api/Barbers/CreateDto")]
         [Route("~/api/Barbers/CreateDto/{BarberEmail}/{BarberName}")]
         //[Route("api/Barbers/Create?BarberEmail={BarberEmail}&BarberName={BarberName}")]
@@ -131,9 +129,6 @@ namespace BarberAPI.Controllers
             return View(barber);
         }
 
-        // POST: Barbers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpGet]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BarberName,AddressGuid,AverageRating,Status,Id,ModelGUID,IsDeleted,CreatedDateTime,DeletedDateTime,CompletedDateTime,CreatorId")] Barber barber)

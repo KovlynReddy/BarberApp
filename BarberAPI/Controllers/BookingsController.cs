@@ -29,6 +29,27 @@ namespace BarberAPI.Controllers
             return View(await _context.Bookings.ToListAsync());
         }
 
+        [Route("~/api/Booking/GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var allBookings = await _context.Bookings.ToListAsync();
+            List<BookingDto> allBookingDtos = new List<BookingDto>();
+
+            foreach (var booking in allBookings)
+            {
+                allBookingDtos.Add( new BookingDto { 
+                BookDateTimeString = booking.BookingTime,
+                CreatedDateTimeString = booking.CreatedDateTime,
+                ModelGuid = booking.ModelGUID,
+                BarberGuid = booking.BarberGuid,
+                UserGuid = booking.UserGuid
+                });
+            }
+
+            return Ok(allBookingDtos);
+        }
+
+
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,15 +69,13 @@ namespace BarberAPI.Controllers
         }
 
         // GET: Bookings/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Bookings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
         [AllowAnonymous]
         [Route("~/api/Booking/CreateDto")]
         [HttpPost]
@@ -65,7 +84,7 @@ namespace BarberAPI.Controllers
             Booking newBooking = new Booking
             {
                 Reason = newBookingDto.Reason,
-                BookingTime = newBookingDto.ToString(),
+                BookingTime = newBookingDto.BookDateTime.ToString(),
                 ModelGUID = new Guid().ToString(),
                 CreatedDateTime = new DateTime().ToString()
             };
@@ -90,9 +109,7 @@ namespace BarberAPI.Controllers
             return View(booking);
         }
 
-        // POST: Bookings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BarberGuid,UserGuid,Reason,Rating,Description,BookingTime,ArriveTime,CompletionTime,Id,ModelGUID,IsDeleted,CreatedDateTime,DeletedDateTime,CompletedDateTime,CreatorId")] Booking booking)

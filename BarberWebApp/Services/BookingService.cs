@@ -44,7 +44,37 @@ namespace Newtryx.Services
 
         }
 
-        public async Task<List<CreateBarberDto>> Create(CreateBookingDto newBooking)
+        public async Task<List<BookingDto>> GetAll()
+        {
+            IEnumerable<BookingDto> bookings = null;
+
+
+            string apiUrl = "https://localhost:44337/api/Booking/GetAll";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                var apiresponse = new List<BookingDto>();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsAsync<List<BookingDto>>();
+                    //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
+                    apiresponse = data;
+                    //Newtonsoft.Json.JsonConvert.DeserializeObject(data);
+                }
+
+                return apiresponse;
+            }
+
+        }
+
+        public async Task<List<CreateBookingDto>> Create(CreateBookingDto newBooking)
         {
             IEnumerable<CreateBarberDto> bookings = null;
 
@@ -63,11 +93,11 @@ namespace Newtryx.Services
 
                 //result.EnsureSuccessStatusCode();
 
-                var apiresponse = new List<CreateBarberDto>();
+                var apiresponse = new List<CreateBookingDto>();
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var data = await result.Content.ReadAsAsync<List<CreateBarberDto>>();
+                    var data = await result.Content.ReadAsAsync<List<CreateBookingDto>>();
                     //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
                     apiresponse = data;
                 }

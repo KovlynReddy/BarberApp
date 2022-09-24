@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BarberAppDLL.Models.ViewModels.BookingViewModel>
+
+@{
+    ViewData["Title"] = "ViewListBookings";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarberGuid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarberGuid)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

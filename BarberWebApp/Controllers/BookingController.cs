@@ -29,6 +29,30 @@ namespace BarberWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewAll() {
+
+            List<BookingDto> response = new List<BookingDto>();
+
+            response = await _bookingService.GetAll();
+
+            List<BookingViewModel> model = new List<BookingViewModel>();
+           
+            foreach (var booking in response)
+            {
+                model.Add(new BookingViewModel
+                {
+                    BookDateTimeString = booking.BookDateTimeString,
+                    CreatedDateTimeString = booking.CreatedDateTimeString,
+                    ModelGuid = booking.ModelGuid,
+                    BarberGuid = booking.BarberGuid,
+                    UserGuid = booking.UserGuid
+                });
+            }
+
+            return View("ViewListBookings",model);
+        }
+
         // GET: BookingController/Create
         public ActionResult Create()
         {

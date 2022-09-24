@@ -454,3 +454,6 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netco
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\Create.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Barber\ViewListBarbers.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BarberView.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Barber\ViewBarber.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\_ViewBooking.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\ViewListBookings.cshtml.g.cs

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BarberAppDLL.Models.Dto
+namespace BarberAppDLL.Models.ViewModels
 {
-    public class BaseDto
+    public class BookingViewModel
     {
         public string CreatedDateTimeString { get; set; }
         public string ArrivedDateTimeString { get; set; }
@@ -13,10 +13,11 @@ namespace BarberAppDLL.Models.Dto
         public DateTime CreatedDateTime { get; set; }
         public DateTime ArrivedDateTime { get; set; }
         public DateTime BookDateTime { get; set; }
-        public DateTime CompletedDateTime { get; set; } 
+        public DateTime CompletedDateTime { get; set; }
         public int IsDeleted { get; set; }
         public string ModelGuid { get; set; }
         public string UserGuid { get; set; }
         public string BarberGuid { get; set; }
     }
 }
+
