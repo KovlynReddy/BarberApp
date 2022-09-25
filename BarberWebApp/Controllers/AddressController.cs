@@ -27,7 +27,37 @@ namespace BarberWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewMap()
         {
-            return View("_MapView");
+            MapViewModel model = new MapViewModel { 
+            Lats = new List<string> {
+            "-29.866807",
+            "-29.966807",
+            "-29.996807"
+            },
+            Longs = new List<string> {
+            "30.884297",
+            "30.784297",
+            "30.684297"
+            },
+            Captions = new List<string> {
+            "1",
+            "2",
+            "3"
+            }, 
+            Names = new List<string> {
+            "a",
+            "b",
+            "c"
+            },
+            CenterLat = (-29.766807).ToString(), 
+            CenterLon = (30.984297).ToString(), 
+            Scale = 100.ToString() , 
+            Zoom = 16.ToString()
+
+            };
+
+            
+
+            return View("_MapView",model);
         }
 
         // GET: AddressController/Details/5
@@ -39,7 +69,9 @@ namespace BarberWebApp.Controllers
         // GET: AddressController/Create
         public ActionResult Create()
         {
-            return View();
+            CreateAddressViewModel model = new CreateAddressViewModel();
+
+            return View(model);
         }
 
         // POST: AddressController/Create

@@ -42,12 +42,12 @@
             <hr/>
             <div class="form-group">
                 <label asp-for="Lat" class="control-label"></label>
-                <input asp-for="Lat" class="form-control" />
+                <input id="Lat" asp-for="Lat" class="form-control" />
                 <span asp-validation-for="Lat" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="lon" class="control-label"></label>
-                <input asp-for="lon" class="form-control" />
+                <input id="Lon" asp-for="lon" class="form-control" />
                 <span asp-validation-for="lon" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,6 +60,57 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    //    if (navigator.geolocation) {
+    //        navigator.geolocation.getCurrentPosition(displayPosition);
+    //    }
+    //    else {
+    //        displayError("Please update your browser to use Geolocation.");
+    //    }
+    //});
+
+    //function displayPosition(pos) {
+    //    let coords = pos.coords;
+    //    console.log(text(new Date(pos.timestamp))   );
+    //    console.log(text(coords.latitude)           );
+    //    console.log(text(coords.longitude)          );
+    //    console.log(text(coords.accuracy)           );
+    //    console.log(text(coords.altitude ?? "n/a")  );
+    //    console.log(text(coords.heading ?? "n/a")   );
+    //    console.log(text(coords.speed ?? "n/a")     );
+    //}
+    
+var x = document.getElementById("Lat");
+var y = document.getElementById("Lon");
+
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+      console.log( "Geolocation is not supported by this browser.");
+  }
+
+
+    function showPosition(position) {
+        console.log(position);
+
+       //console.log( String(position.coords.latitude) );
+       // console.log(String(position.coords.longitude));
+
+        x.value = String(position.coords.latitude);
+        y.value = String(position.coords.longitude);
+       
+
+
+        @*@Model.Lat =  String(position.coords.latitude); 
+        @Model.lon =    String(position.coords.longitude);*@
+        
+    }
+
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
