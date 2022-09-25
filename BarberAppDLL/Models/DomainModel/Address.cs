@@ -12,6 +12,7 @@ namespace BarberAppDLL.Models.DomainModel
         public string Suburb { get; set; }
         public string PostCode { get; set; }
         public string Country { get; set; }
+
         public string Lat { get; set; }
         public string lon { get; set; }
     }

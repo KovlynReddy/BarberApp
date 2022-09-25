@@ -71,7 +71,7 @@ namespace BarberWebApp.Services
 
         public async Task<List<Barber>> Suggested()
         {
-            IEnumerable<Barber> barbers = null;
+            IEnumerable<Barber> barbers = new List<Barber>();
 
             string apiUrl = "https://localhost:44337/api/Barbers";
 

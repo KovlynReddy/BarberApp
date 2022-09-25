@@ -6,7 +6,9 @@ namespace BarberAppDLL.Models.ViewModels
 {
     public class CreateAddressViewModel
     {
+        public DateTime CreatedDateTime { get; set; }
         public string UserGuid { get; set; }
+        public string ModelGuid { get; set; }
         public List<string> people { get; set; } = new List<string>();
         public int UserCode { get; set; } // either Barber or Customer
         public string Number { get; set; }

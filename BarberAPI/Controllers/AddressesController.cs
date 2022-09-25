@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BarberAPI.Data.DB;
 using BarberAppDLL.Models.DomainModel;
+using Microsoft.AspNetCore.Authorization;
+using BarberAppDLL.Models.Dto;
 
 namespace BarberAPI.Controllers
 {
@@ -46,6 +48,7 @@ namespace BarberAPI.Controllers
         }
 
         // GET: Addresses/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +68,30 @@ namespace BarberAPI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(address);
+        }
+
+        [AllowAnonymous]
+        [Route("~/api/Address/CreateDto")]
+        [HttpPost]
+        public async Task<IActionResult> CreateDto([FromBody] CreateAddressDto newAddressDto)
+        {
+            Address newAddress = new Address
+            {
+                Number = newAddressDto.Number,
+                Street = newAddressDto.Street,
+                MainStreet = newAddressDto.MainStreet,
+                Suburb = newAddressDto.Suburb,
+                Country = newAddressDto.Country,
+                PostCode = newAddressDto.PostCode,
+                ModelGUID = newAddressDto.ModelGuid,
+                CreatedDateTime = newAddressDto.CreatedDateTime.ToString(),
+                Lat = newAddressDto.Lat,
+                lon = newAddressDto.lon, 
+            };
+
+            _context.Add(newAddress);
+            await _context.SaveChangesAsync();
+            return Ok(newAddress);
         }
 
         // GET: Addresses/Edit/5

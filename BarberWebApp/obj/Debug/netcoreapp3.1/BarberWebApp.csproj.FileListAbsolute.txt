@@ -457,3 +457,5 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netco
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Barber\ViewBarber.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\_ViewBooking.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\ViewListBookings.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Address\Create.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Address\_MapView.cshtml.g.cs
