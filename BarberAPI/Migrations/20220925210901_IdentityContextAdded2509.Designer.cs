@@ -4,14 +4,16 @@ using BarberAPI.Data.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BarberAPI.Migrations
 {
     [DbContext(typeof(BarberContext))]
-    partial class BarberContextModelSnapshot : ModelSnapshot
+    [Migration("20220925210901_IdentityContextAdded2509")]
+    partial class IdentityContextAdded2509
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

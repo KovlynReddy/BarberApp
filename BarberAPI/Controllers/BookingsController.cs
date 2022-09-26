@@ -86,7 +86,12 @@ namespace BarberAPI.Controllers
                 Reason = newBookingDto.Reason,
                 BookingTime = newBookingDto.BookDateTime.ToString(),
                 ModelGUID = new Guid().ToString(),
-                CreatedDateTime = new DateTime().ToString()
+                CreatedDateTime = DateTime.Now.ToString(),
+                Rating = 0,
+                Description = newBookingDto.Description,
+                BarberGuid = newBookingDto.BarberGuid,
+                UserGuid = newBookingDto.UserGuid,
+                CreatorId = newBookingDto.UserGuid
             };
             _context.Add(newBooking);
             await _context.SaveChangesAsync();

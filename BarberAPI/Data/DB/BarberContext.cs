@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BarberAppDLL.Models.DomainModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BarberAPI.Data.DB
 {
-    public class BarberContext : DbContext
+    public class BarberContext : IdentityDbContext
     {
 
         public BarberContext(DbContextOptions<BarberContext> options)

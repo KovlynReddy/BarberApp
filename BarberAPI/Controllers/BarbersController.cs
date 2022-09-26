@@ -105,7 +105,10 @@ namespace BarberAPI.Controllers
                 BarberEmail = barber.BarberEmail,//
                 BarberName = barber.BarberName,//
                 ModelGUID = new Guid().ToString(),
-                CreatedDateTime = new DateTime().ToString()
+                CreatedDateTime = DateTime.Now.ToString(),
+                AverageRating = "",
+                AddressGuid = "",
+                Status = 0 
             };
             _context.Add(newBarber);
             await _context.SaveChangesAsync();

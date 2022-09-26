@@ -70,9 +70,19 @@ namespace BarberWebApp.Controllers
         {
             CreateBookingDto newBookingDto = new CreateBookingDto
             {
-                Reason = newBooking.Reason, 
+                Reason = newBooking.Reason,
                 BookDateTime = newBooking.BookingDateTime,
                 BookDateTimeString = newBooking.BookingDateTime.ToString(),
+                CreatedDateTime = DateTime.Today,
+                CreatedDateTimeString = DateTime.Today.ToString(),
+                Code = "01" ,
+                Description =  newBooking.Description ,
+                BookingDateTime = newBooking.BookingDateTime,
+                BookingDate = newBooking.BookingDateTime,
+                BarberGuid = newBooking.SelectedBarber,
+                BookingTime = newBooking.BookingDateTime,
+                ModelGuid = new Guid().ToString(),
+                UserGuid = User.Identity.Name,
                 Request = newBooking.Request
             };
 
