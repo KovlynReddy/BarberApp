@@ -460,3 +460,4 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\bin\Debug\netco
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Create.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Booking\Schedule.cshtml.g.cs

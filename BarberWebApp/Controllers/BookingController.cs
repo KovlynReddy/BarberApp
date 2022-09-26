@@ -23,6 +23,21 @@ namespace BarberWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Schedule()
+        {
+
+            ViewData["events"] = new[]
+            {
+                new SchedulerDataDto { Id = 1, Title = "Customer 1 HairCut", Start_Date = "2022-11-14"},
+                new SchedulerDataDto { Id = 2, Title = "Customer 2 Meeting", Start_Date = "2022-11-12"},
+            };
+
+
+            return View();
+        }
+
+
         // GET: BookingController/Details/5
         public ActionResult Details(int id)
         {

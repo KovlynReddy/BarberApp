@@ -37,12 +37,12 @@ namespace BarberAPI.Controllers
 
             foreach (var booking in allBookings)
             {
-                allBookingDtos.Add( new BookingDto { 
-                BookDateTimeString = booking.BookingTime,
-                CreatedDateTimeString = booking.CreatedDateTime,
-                ModelGuid = booking.ModelGUID,
-                BarberGuid = booking.BarberGuid,
-                UserGuid = booking.UserGuid
+                allBookingDtos.Add(new BookingDto {
+                    BookDateTimeString = booking.BookingTime,
+                    CreatedDateTimeString = booking.CreatedDateTime,
+                    ModelGuid = booking.ModelGUID,
+                    BarberGuid = booking.BarberGuid,
+                    UserGuid = booking.UserGuid
                 });
             }
 
@@ -145,6 +145,41 @@ namespace BarberAPI.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(booking);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetCalendarData(){
+
+            List<SchedulerDataDto> data = new List<SchedulerDataDto>();
+
+           
+            SchedulerDataDto infoObj1 = new SchedulerDataDto();
+            infoObj1.Id = 1;
+            infoObj1.Title = "User1 Cut";
+            infoObj1.Desc = "Description 1";
+            infoObj1.Start_Date = "2022-09-16 22:37:22.467";
+            infoObj1.End_Date = "2022-09-16 23:30:22.467";
+            data.Add(infoObj1);
+
+            SchedulerDataDto infoObj2 = new SchedulerDataDto();
+            infoObj2.Id = 2;
+            infoObj2.Title = "User2 Cut";
+            infoObj2.Desc = "Description 2";
+            infoObj2.Start_Date = "2022-09-17 10:00:22.467";
+            infoObj2.End_Date = "2022-09-17 11:00:22.467";
+            data.Add(infoObj2);
+
+
+            SchedulerDataDto infoObj3 = new SchedulerDataDto();
+            infoObj3.Id = 3;
+            infoObj3.Title = "Meeting";
+            infoObj3.Desc = "Description 3";
+            infoObj3.Start_Date = "2022-09-18 07:30:22.467";
+            infoObj3.End_Date = "2022-09-18 08:00:22.467";
+            data.Add(infoObj3);
+
+            return Ok(data);
         }
 
         // GET: Bookings/Delete/5
