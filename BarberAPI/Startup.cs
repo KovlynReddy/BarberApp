@@ -33,7 +33,6 @@ namespace BarberAPI
             services.AddHttpClient();
             services.AddRouting();
 
-
             services.AddDbContext<BarberContext>(opt=>opt.UseSqlServer
             (Configuration.GetConnectionString("BarberConnection"))
             );

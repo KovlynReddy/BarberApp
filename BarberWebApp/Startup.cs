@@ -36,6 +36,7 @@ namespace BarberWebApp
             );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddHttpClient();
             services.AddControllersWithViews();
             services.AddRazorPages();

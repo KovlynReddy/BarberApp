@@ -9666,6 +9666,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AutoMapper >= 11.0.1",
       "BarberAPI >= 1.0.0",
       "BarberAppDLL >= 1.0.0",
       "Flurl >= 3.0.6",
@@ -9737,6 +9738,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[11.0.1, )"
+          },
           "Flurl": {
             "target": "Package",
             "version": "[3.0.6, )"

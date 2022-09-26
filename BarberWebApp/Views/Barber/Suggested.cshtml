@@ -1,0 +1,21 @@
+﻿@model IEnumerable<BarberAppDLL.Models.DomainModel.Barber>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    });
+
+
+
+    function showPosition(position) {
+        var x = String(position.coords.latitude);
+        var y = String(position.coords.longitude);
+        console.log(position, x, y);
+    }
+</script>

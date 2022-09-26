@@ -7,6 +7,13 @@
     var length = events.Count();
 }
 
+
+<div class="calendarContainer">
+    <div id="calendar"></div>
+</div>
+
+
+
 <table id="todoTable">
     @for (int i = 0; i < length; i++)
     {
@@ -19,12 +26,12 @@
 </table>
 
 
-<div class="calendarContainer">
-    <div id="calendar"></div>
-</div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
+
+
+
 
 <script>
     let eventsArr = loadData();

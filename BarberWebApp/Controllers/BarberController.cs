@@ -14,12 +14,17 @@ namespace BarberWebApp.Controllers
     public class BarberController : Controller
     {
         public BarberService _barberService { get; set; }
+        public AddressService _addressService { get; set; }
 
         public BarberController()
         {
             _barberService = new BarberService();
+            _addressService = new AddressService();
         }
+
+
         // GET: BarberController
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var allBarbers = await _barberService.GetAll(); 
@@ -27,6 +32,7 @@ namespace BarberWebApp.Controllers
             return View("ViewListBarbers",allBarbers);
         }
 
+        [HttpGet]
         public async Task<IActionResult> ViewAll()
         {
             var allBarbers = await _barberService.GetAll();
@@ -71,6 +77,16 @@ namespace BarberWebApp.Controllers
         public ActionResult Edit(int id)
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Suggested() {
+            // get all barbers
+            var allBarbers = await _barberService.GetAll();
+
+            // get all barbers addresses
+
+            return View(allBarbers);
         }
 
         // POST: BarberController/Edit/5

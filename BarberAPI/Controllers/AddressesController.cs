@@ -24,9 +24,43 @@ namespace BarberAPI.Controllers
         }
 
         // GET: Addresses
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Addresses.ToListAsync());
+            var response = ConvertToDto(await _context.Addresses.ToListAsync());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll() {
+
+            var response = ConvertToDto(await _context.Addresses.ToListAsync());
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUsersAddress(string id) {
+            var response = ConvertToDto(await _context.Addresses.Where(m=>m.CreatorId==id).ToListAsync());
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LinkUserToAddress(string userId , string addressId)
+        {
+            var address = ConvertToDto(await _context.Addresses.Where(m => m.ModelGUID == addressId).ToListAsync());
+
+            var response = address.FirstOrDefault();
+            response.UserGuid = userId;
+
+            _context.Attach(response);
+            _context.Update(response);
+            _context.Entry(response).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok(response);
         }
 
         // GET: Addresses/Details/5
@@ -172,6 +206,64 @@ namespace BarberAPI.Controllers
             _context.Addresses.Remove(address);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private List<AddressDto> ConvertToDto(List<Address> argument) {
+
+            var response = new List<AddressDto>();
+
+            foreach (var item in argument)
+            {
+
+                AddressDto Address = new AddressDto
+                {
+                    Number = item.Number,
+                    Street = item.Street,
+                    MainStreet = item.MainStreet,
+                    Suburb = item.Suburb,
+                    Country = item.Country,
+                    PostCode = item.PostCode,
+                    ModelGuid = item.ModelGUID,
+                    CreatedDateTime = DateTime.Parse( item.CreatedDateTime ),
+                    Lat = item.Lat,
+                    lon = item.lon
+                };
+
+                response.Add(Address);
+
+            }
+
+
+            return response;
+        }
+
+        private List<Address> ConvertToDomainModel(List<AddressDto> argument)
+        {
+
+            var response = new List<Address>();
+
+            foreach (var item in argument)
+            {
+
+                Address Address = new Address
+                {
+                    Number = item.Number,
+                    Street = item.Street,
+                    MainStreet = item.MainStreet,
+                    Suburb = item.Suburb,
+                    Country = item.Country,
+                    PostCode = item.PostCode,
+                    ModelGUID = item.ModelGuid,
+                    CreatedDateTime = item.CreatedDateTime.ToString(),
+                    Lat = item.Lat,
+                    lon = item.lon
+                };
+
+                response.Add(Address);
+
+            }
+
+            return response;
         }
 
         private bool AddressExists(int id)
