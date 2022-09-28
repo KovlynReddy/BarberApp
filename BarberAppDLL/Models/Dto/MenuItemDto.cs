@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BarberAppDLL.Models.DomainModel
+namespace BarberAppDLL.Models.Dto
 {
-    public class Item : BaseModel
+    public class MenuItemDto : BaseDto
     {
         public string ItemName { get; set; }
         public string MenuId { get; set; }
@@ -12,6 +13,7 @@ namespace BarberAppDLL.Models.DomainModel
         public string Caption { get; set; }
         public int Cost { get; set; }
         public string Currency { get; set; }
-        public string Path { get; set; }
+        public string CreatorId { get; set; }
+        public IFormFile ItemImage { get; set; }
     }
 }

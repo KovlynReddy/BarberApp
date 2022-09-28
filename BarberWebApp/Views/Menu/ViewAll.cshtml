@@ -1,0 +1,139 @@
+﻿@model IEnumerable<BarberAppDLL.Models.Dto.MenuItemDto>
+
+@{
+    ViewData["Title"] = "ViewAll";
+}
+
+<h1>ViewAll</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SKUCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTimeString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivedDateTimeString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDateTimeString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedDateTimeString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserGuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarberGuid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SKUCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTimeString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivedDateTimeString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookDateTimeString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedDateTimeString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarberGuid)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>

@@ -52,6 +52,7 @@ namespace BarberAPI.Data.DB
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<LogVisit> LogVisits { get; set; }
+        public DbSet<Item> Items { get; set; }
 
      
 

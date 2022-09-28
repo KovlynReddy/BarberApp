@@ -1,5 +1,6 @@
-﻿using BarberAppDLL.Models.ViewModels;
-using Microsoft.AspNetCore.Http;
+﻿using BarberAppDLL.Models.Dto;
+using BarberAppDLL.Models.ViewModels;
+using BarberWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,30 @@ using System.Threading.Tasks;
 
 namespace BarberWebApp.Controllers
 {
+    [Route("Menu/[action]")]
     public class MenuController : Controller
     {
-        // GET: MenuController
+        public MenuService _MenuService { get; set; }
+
+        public MenuController()
+        {
+            _MenuService = new MenuService();
+        }
+
+
         public ActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewAll()
+        {
+            var respomse = await _MenuService.GetAll();
+
+            return View(respomse);
+        }
+
 
         // GET: MenuController/Details/5
         public ActionResult Details(int id)
@@ -23,20 +41,46 @@ namespace BarberWebApp.Controllers
         }
 
         // GET: MenuController/Create
-        public ActionResult Create()
+        [HttpGet]
+        public IActionResult Create()
         {
             CreateMenuItemViewModel model = new CreateMenuItemViewModel();
+
+            model.Caption = "FlatTop";
+            model.Cost = 100;
+            model.Currency = "R";
+            model.ItemName = "TestCut1";
+            model.SKUCode = "TC012709";
 
             return View(model);
         }
 
-        // POST: MenuController/Create
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateMenuItemViewModel collection)
+        public async Task<IActionResult> Create(CreateMenuItemViewModel newMenuItem)
         {
             try
             {
+                CreateMenuItemDto model = new CreateMenuItemDto()
+                {
+                    ItemName = newMenuItem.ItemName,
+                    //ItemImage       = newMenuItem.ItemImage,
+                    UserGuid = User.Identity.Name,
+                    SKUCode = newMenuItem.SKUCode,
+                    ModelGuid = new Guid().ToString(),
+                    CreatedDateTime = DateTime.Now,
+                    CreatorId = User.Identity.Name,
+                    BarberGuid = User.Identity.Name,
+                    Caption = newMenuItem.Caption,
+                    Cost = newMenuItem.Cost,
+                    MenuId = newMenuItem.MenuId,
+                    Currency = newMenuItem.Currency,
+                    CreatedDateTimeString = DateTime.Now.ToString(),
+                };
+
+                await _MenuService.Create(model);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -45,46 +89,5 @@ namespace BarberWebApp.Controllers
             }
         }
 
-        // GET: MenuController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MenuController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MenuController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MenuController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

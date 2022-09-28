@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BarberAppDLL.Models.ViewModels
 {
-    public class CreateMenuItemViewModel
+    public class CreateMenuItemViewModel 
     {
         public string ItemName { get; set; }
         public string MenuId { get; set; }
@@ -15,6 +15,6 @@ namespace BarberAppDLL.Models.ViewModels
         public string Currency { get; set; }
         public string CreatedDateTime { get; set; }
         public string CreatorId { get; set; }
-        public IFormFile ItemImage { get; set; }
+        //public IFormFile ItemImage { get; set; }
     }
 }
