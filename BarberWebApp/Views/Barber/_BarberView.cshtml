@@ -1,0 +1,14 @@
+﻿@model BarberAppDLL.Models.DomainModel.Barber
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/Images/DefaultProfile.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h3 class="card-title">@Model.BarberName</h3>
+        <h5 class="card-title">@Model.BarberEmail </h5>
+        <h6 class="card-title">@Model.AverageRating</h6>
+        <h6 class="card-title">@Model.Status</h6>
+        <p class="card-text">@Model.ModelGUID</p>
+        <a href="#" class="btn btn-primary">Book</a>
+    </div>
+</div>

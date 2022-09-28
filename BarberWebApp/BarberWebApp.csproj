@@ -33,4 +33,8 @@
     <ProjectReference Include="..\BarberAppDLL\BarberAppDLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 </Project>
