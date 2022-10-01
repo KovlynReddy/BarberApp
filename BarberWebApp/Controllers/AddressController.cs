@@ -76,7 +76,7 @@ namespace BarberWebApp.Controllers
         public async Task<IActionResult> LinkAddress(LinkAddressViewModel model)
         {
 
-            _addressService.LinkAddress();
+            //_addressService.LinkAddress();
 
             return View();
         }

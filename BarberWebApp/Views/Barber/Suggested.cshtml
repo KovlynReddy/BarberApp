@@ -9,13 +9,25 @@
         } else {
             console.log("Geolocation is not supported by this browser.");
         }
-    });
 
-
-
-    function showPosition(position) {
         var x = String(position.coords.latitude);
         var y = String(position.coords.longitude);
-        console.log(position, x, y);
-    }
+       
+
+            $.ajax({
+                type: "POST",
+                url: "https://localhost:44388/Barber/Suggested",
+                data: {
+                    "lat": x,
+                    "lon": y
+                },
+                success: function (tekst) {
+                    console.log("successs");
+                },
+                error: function (request, error) {
+                    console.log("ERROR:" + error);
+                }
+            });
+    
+    });
 </script>
