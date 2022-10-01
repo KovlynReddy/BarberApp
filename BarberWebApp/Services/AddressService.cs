@@ -96,7 +96,41 @@ namespace BarberWebApp.Services
 
         }
 
-        public async Task<List<CreateAddressDto>> Create(CreateAddressDto newAddress)
+
+        public async Task<CreateAddressDto> LinkAddress((string,string) newLink)
+        {
+            IEnumerable<CreateBarberDto> Addresses = null;
+
+            string apiUrl = "https://localhost:44337/api/Address/LinkDto";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var newbarberJson = Newtonsoft.Json.JsonConvert.SerializeObject(newAddress);
+                var payload = new StringContent(newbarberJson, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage result = await client.PostAsync(apiUrl, payload);
+
+                //result.EnsureSuccessStatusCode();
+
+                var apiresponse = new List<CreateAddressDto>();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var data = await result.Content.ReadAsAsync<List<CreateAddressDto>>();
+                    //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
+                    apiresponse = data;
+                }
+
+                return apiresponse;
+            }
+
+        }
+
+            public async Task<List<CreateAddressDto>> Create(CreateAddressDto newAddress)
         {
             IEnumerable<CreateBarberDto> Addresses = null;
 

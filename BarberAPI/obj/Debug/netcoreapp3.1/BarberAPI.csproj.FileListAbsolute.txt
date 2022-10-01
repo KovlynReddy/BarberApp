@@ -148,3 +148,15 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcorea
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\JWT.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\xunit.assert.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\xunit.core.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberAPI\obj\Debug\netcoreapp3.1\BarberAPI.MvcApplicationPartsAssemblyInfo.cs

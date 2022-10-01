@@ -24,8 +24,8 @@ namespace BarberAPI.Data.DB
                 new Barber { Id = 2, BarberName = "Barber2", BarberEmail = "barber2@gmail.com", AddressGuid = "A2222", AverageRating = "1", Status = 0, CreatedDateTime = new DateTime().ToString(), CreatorId = "C2222", ModelGUID = "B2222", IsDeleted = 0 }
                                                  );
             modelBuilder.Entity<Address>().HasData(
-                new Address { Id = 1, Number = "3", Street = "Street1", MainStreet = "Street10", Suburb = "Sub1", PostCode = "1111", Country = "USA", Lat = "1000", lon = "1111", CreatedDateTime = new DateTime().ToString(), ModelGUID = "A1111", CreatorId = "C1111", IsDeleted = 0 },
-                new Address { Id = 2, Number = "6", Street = "Sreet2", MainStreet = "Street20", Suburb = "Sub2", PostCode = "2222", Country = "USB", Lat = "2000", lon = "2222", CreatedDateTime = new DateTime().ToString(), ModelGUID = "A2222", CreatorId = "C2222", IsDeleted = 0 }
+                new Address { Id = 1, Number = "3", Street = "Street1", MainStreet = "Street10", Suburb = "Sub1", PostCode = "1111", Country = "USA", Lat = "1000", lon = "1111", CreatedDateTime = new DateTime().ToString(), ModelGUID = "A1111", CreatorId = "C1111", IsDeleted = 0 ,Caption = "Test01" },
+                new Address { Id = 2, Number = "6", Street = "Sreet2", MainStreet = "Street20", Suburb = "Sub2", PostCode = "2222", Country = "USB", Lat = "2000", lon = "2222", CreatedDateTime = new DateTime().ToString(), ModelGUID = "A2222", CreatorId = "C2222", IsDeleted = 0 ,  Caption = "Test03"}
                                                  );
             modelBuilder.Entity<LogVisit>().HasData(
                 new LogVisit { Id = 1, BarberGuid = "B1111", UserGuid = "C1111", Reason = "Hair Cut", Rating = 2, Description = "Booking", BookingTime = new DateTime().ToString(), ArriveTime = new DateTime().ToString(), CompletionTime = new DateTime().ToString(), CreatedDateTime = new DateTime().ToString(), CompletedDateTime = new DateTime().ToString(), CreatorId = "C1111", ModelGUID = "V1111" },

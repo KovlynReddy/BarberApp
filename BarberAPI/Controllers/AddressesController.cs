@@ -23,6 +23,38 @@ namespace BarberAPI.Controllers
             _context = context;
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> LinkAddress((string,string) link)
+        {
+            var address = _context.Addresses.FirstOrDefault(m=>m.ModelGUID == link.Item1);
+
+            var person = _context.Customers.FirstOrDefault(m => m.ModelGUID == link.Item2);
+            if (person.CustomerName == "" || person == new Customer())
+            {
+                var barber = _context.Barbers.FirstOrDefault(m => m.ModelGUID == link.Item2);
+                barber.AddressGuid = link.Item1;
+                _context.Update(barber);
+                _context.Entry(barber).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            else {
+
+                person.CustomerAddress = link.Item1;
+                _context.Update(person);
+                _context.Entry(person).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+
+            address.CreatorId = link.Item2;
+
+            _context.Update(address);
+            _context.Entry(address).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Ok(address);
+        }
+
         // GET: Addresses
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -117,7 +149,7 @@ namespace BarberAPI.Controllers
                 Suburb = newAddressDto.Suburb,
                 Country = newAddressDto.Country,
                 PostCode = newAddressDto.PostCode,
-                ModelGUID = newAddressDto.ModelGuid,
+                ModelGUID = Guid.NewGuid().ToString(),
                 CreatedDateTime = newAddressDto.CreatedDateTime.ToString(),
                 Lat = newAddressDto.Lat,
                 lon = newAddressDto.lon, 

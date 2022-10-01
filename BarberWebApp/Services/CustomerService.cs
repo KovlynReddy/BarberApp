@@ -1,4 +1,5 @@
 ﻿using BarberAppDLL.Models.DomainModel;
+using BarberAppDLL.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,34 @@ namespace BarberWebApp.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsAsync<List<Customer>>();
+                    //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
+                    apiresponse = data;
+                }
+
+                return apiresponse;
+            }
+
+        }
+
+        public async Task<List<CustomerDto>> GetAll()
+        {
+            IEnumerable<CustomerDto> barbers = null;
+
+            string apiUrl = "https://localhost:44337/api/Customers/GetAll";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                var apiresponse = new List<CustomerDto>();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsAsync<List<CustomerDto>>();
                     //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
                     apiresponse = data;
                 }

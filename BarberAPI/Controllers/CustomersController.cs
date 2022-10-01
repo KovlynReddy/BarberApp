@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BarberAPI.Data.DB;
 using BarberAppDLL.Models.DomainModel;
+using BarberAppDLL.Models.Dto;
 
 namespace BarberAPI.Controllers
 {
@@ -43,6 +44,35 @@ namespace BarberAPI.Controllers
             }
 
             return View(customer);
+        }
+
+        [HttpGet]
+        [Route("~/api/Customers/GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _context.Customers.ToListAsync();
+
+            var response = new List<CustomerDto>();
+
+            foreach (var customer in result)
+            {
+
+                CustomerDto CustomerDto = new CustomerDto
+                {
+                    CustomerEmail = customer.CustomerEmail,
+                    UserGuid = customer.ModelGUID, 
+                    CustomerName = customer.CustomerName, 
+                    ModelGuid = customer.ModelGUID,
+                    CustomerAddress = customer.CustomerAddress,
+                    CreatedDateTime = DateTime.Parse(customer.CreatedDateTime),
+                    CreatedDateTimeString = customer.CreatedDateTime
+                };
+
+                response.Add(CustomerDto);
+
+            }
+
+            return Ok(response);
         }
 
         // GET: Customers/Create

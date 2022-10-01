@@ -80,13 +80,33 @@ namespace BarberWebApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Suggested() {
+        public async Task<IActionResult> Suggested((int,int) location) {
             // get all barbers
             var allBarbers = await _barberService.GetAll();
+            var allAddresses = await _addressService.GetAll();
+            var allBarberAddresses = new List<Address>();
+            var suggestedBarbers = new List<Address>();
 
             // get all barbers addresses
 
-            return View(allBarbers);
+            foreach (var Barber in allBarbers)
+            {
+                allBarberAddresses.Add(allAddresses.FirstOrDefault(m=>m.CreatorId == Barber.ModelGUID));
+            }
+
+
+            // according to my location + - give as suggested
+            foreach (var bAddress in allBarberAddresses)
+            {
+                if ((int.Parse(bAddress.Lat) - location.Item1).ToString().Length < 6 || (int.Parse(bAddress.lon) - location.Item2 ).ToString().Length < 6 )
+                {
+                    suggestedBarbers.Add(bAddress);
+                }
+            }
+
+
+            // display on a map centered at location
+            return View(suggestedBarbers);
         }
 
         // POST: BarberController/Edit/5

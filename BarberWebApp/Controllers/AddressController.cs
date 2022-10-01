@@ -12,10 +12,14 @@ namespace BarberWebApp.Controllers
 {
     public class AddressController : Controller
     {
+        public BarberService _barberService { get; set; }
+        public CustomerService _customerService { get; set; }
         public AddressService _addressService { get; set; }
         public AddressController()
         {
             _addressService = new AddressService();
+            _customerService = new CustomerService();
+            _barberService = new BarberService();
         }
 
         // GET: AddressController
@@ -25,6 +29,59 @@ namespace BarberWebApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> LinkAddress()
+        {
+            LinkAddressViewModel model = new LinkAddressViewModel();
+
+            var AllAddresses = await _addressService.GetAll();
+            var AllVendors = await _barberService.GetAll();
+            var AllCustomers = await _customerService.GetAll();
+
+            // Ignore Code
+
+            foreach (var item in AllAddresses)
+            {
+                item.Caption = Guid.NewGuid().ToString();
+            }
+
+            // avoiding Caption = null
+
+            model.Addresses = AllAddresses.Select(a =>
+                                  new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                                  {
+                                      Value = a.Caption.ToString(),
+                                      Text = a.ModelGUID
+                                  }).ToList();
+
+            model.People = AllCustomers.Select(a =>
+                                  new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                                  {
+                                      Value = a.CustomerEmail.ToString(),
+                                      Text = a.ModelGuid
+                                  }).ToList();
+
+            model.People.AddRange(AllVendors.Select(a =>
+                                  new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+                                  {
+                                      Value = a.BarberEmail.ToString(),
+                                      Text = a.ModelGUID
+                                  }).ToList());
+
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> LinkAddress(LinkAddressViewModel model)
+        {
+
+            _addressService.LinkAddress();
+
+            return View();
+        }
+
+            [HttpGet]
         public async Task<IActionResult> ViewMap()
         {
             MapViewModel model = new MapViewModel { 
