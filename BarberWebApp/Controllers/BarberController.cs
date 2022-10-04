@@ -86,12 +86,12 @@ namespace BarberWebApp.Controllers
         }
 
        [HttpPost]
-        public async Task<IActionResult> Suggested((int,int) location) {
+        public async Task<IActionResult> Suggested(int lat , int lon) {
             // get all barbers
             var allBarbers = await _barberService.GetAll();
             var allAddresses = await _addressService.GetAll();
-            var allBarberAddresses = new List<Address>();
-            var suggestedBarbers = new List<Address>();
+            var allBarberAddresses = new List<AddressDto>();
+            var suggestedBarbers = new List<AddressDto>();
 
             // get all barbers addresses
 
@@ -105,7 +105,7 @@ namespace BarberWebApp.Controllers
             // according to my location + - give as suggested
             foreach (var bAddress in allBarberAddresses)
             {
-                if ((int.Parse(bAddress.Lat) - location.Item1).ToString().Length < 6 || (int.Parse(bAddress.lon) - location.Item2 ).ToString().Length < 6 )
+                if ((int.Parse(bAddress.Lat) - lat).ToString().Length < 6 || (int.Parse(bAddress.lon) - lon ).ToString().Length < 6 )
                 {
                     model.Lats.Add(bAddress.Lat);
                     model.Longs.Add(bAddress.lon);

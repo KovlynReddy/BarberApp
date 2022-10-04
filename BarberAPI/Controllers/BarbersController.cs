@@ -104,7 +104,7 @@ namespace BarberAPI.Controllers
             {
                 BarberEmail = barber.BarberEmail,//
                 BarberName = barber.BarberName,//
-                ModelGUID = new Guid().ToString(),
+                ModelGUID = Guid.NewGuid().ToString(),
                 CreatedDateTime = DateTime.Now.ToString(),
                 AverageRating = "",
                 AddressGuid = "",

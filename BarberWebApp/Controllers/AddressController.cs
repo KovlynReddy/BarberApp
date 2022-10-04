@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BarberWebApp.Controllers
 {
+
     public class AddressController : Controller
     {
         public BarberService _barberService { get; set; }
@@ -50,7 +51,7 @@ namespace BarberWebApp.Controllers
                                   new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
                                   {
                                       Value = a.Caption.ToString(),
-                                      Text = a.ModelGUID
+                                      Text = a.ModelGuid
                                   }).ToList();
 
             model.People = AllCustomers.Select(a =>
@@ -75,13 +76,16 @@ namespace BarberWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> LinkAddress(LinkAddressViewModel model)
         {
+            LinkAddressDto link = new LinkAddressDto();
+            link.AddressGuid = model.AddressGuid;
+            link.UserGuid = model.UserGuid; 
 
-            //_addressService.LinkAddress();
+            _addressService.LinkAddress(link);
 
             return View();
         }
 
-            [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> ViewMap()
         {
             MapViewModel model = new MapViewModel { 
@@ -167,6 +171,17 @@ namespace BarberWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewAll() {
+
+            var response = await _addressService.GetAll();
+
+            var AddressViewModel = ConvertToViewModel(response);
+
+
+            return View(AddressViewModel);
+        }
+
         // POST: AddressController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -201,6 +216,35 @@ namespace BarberWebApp.Controllers
             {
                 return View();
             }
+        }
+
+
+        private List<AddressViewModel> ConvertToViewModel(List<AddressDto> argument)
+        {
+
+            var response = new List<AddressViewModel>();
+
+            foreach (var item in argument)
+            {
+
+                AddressViewModel Address = new AddressViewModel
+                {
+                    Number = item.Number,
+                    Street = item.Street,
+                    MainStreet = item.MainStreet,
+                    Suburb = item.Suburb,
+                    Country = item.Country,
+                    PostCode = item.PostCode,
+                    ModelGuid = item.ModelGuid,
+                    Lat = item.Lat,
+                    lon = item.lon
+                };
+
+                response.Add(Address);
+
+            }
+
+            return response;
         }
     }
 }

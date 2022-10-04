@@ -12,7 +12,7 @@ using BarberAppDLL.Models.Dto;
 
 namespace BarberAPI.Controllers
 {
-    [Route("api/Addresses")]
+    [Route("api/Address")]
     [ApiController]
     public class AddressesController : Controller
     {
@@ -25,28 +25,28 @@ namespace BarberAPI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> LinkAddress((string,string) link)
+        public async Task<IActionResult> LinkAddress(LinkAddressDto link)
         {
-            var address = _context.Addresses.FirstOrDefault(m=>m.ModelGUID == link.Item1);
+            var address = _context.Addresses.FirstOrDefault(m=>m.ModelGUID == link.AddressGuid);
 
-            var person = _context.Customers.FirstOrDefault(m => m.ModelGUID == link.Item2);
+            var person = _context.Customers.FirstOrDefault(m => m.ModelGUID == link.UserGuid);
             if (person.CustomerName == "" || person == new Customer())
             {
-                var barber = _context.Barbers.FirstOrDefault(m => m.ModelGUID == link.Item2);
-                barber.AddressGuid = link.Item1;
+                var barber = _context.Barbers.FirstOrDefault(m => m.ModelGUID == link.UserGuid);
+                barber.AddressGuid = link.AddressGuid;
                 _context.Update(barber);
                 _context.Entry(barber).State = EntityState.Modified;
                 _context.SaveChanges();
             }
             else {
 
-                person.CustomerAddress = link.Item1;
+                person.CustomerAddress = link.AddressGuid;
                 _context.Update(person);
                 _context.Entry(person).State = EntityState.Modified;
                 _context.SaveChanges();
             }
 
-            address.CreatorId = link.Item2;
+            address.CreatorId = link.UserGuid;
 
             _context.Update(address);
             _context.Entry(address).State = EntityState.Modified;
@@ -65,6 +65,7 @@ namespace BarberAPI.Controllers
         }
 
         [HttpGet]
+        [Route("~/api/Address/GetAll")]
         public async Task<IActionResult> GetAll() {
 
             var response = ConvertToDto(await _context.Addresses.ToListAsync());

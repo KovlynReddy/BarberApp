@@ -40,11 +40,11 @@ namespace BarberWebApp.Services
 
         }
 
-        public async Task<List<Address>> GetAll()
+        public async Task<List<AddressDto>> GetAll()
         {
-            IEnumerable<Address> barbers = null;
+            IEnumerable<AddressDto> addresses = null;
 
-            string apiUrl = "https://localhost:44337/api/Barbers/GetAll";
+            string apiUrl = "https://localhost:44337/api/Address/GetAll";
 
             using (HttpClient client = new HttpClient())
             {
@@ -54,11 +54,11 @@ namespace BarberWebApp.Services
 
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
 
-                var apiresponse = new List<Address>();
+                var apiresponse = new List<AddressDto>();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var data = await response.Content.ReadAsAsync<List<Address>>();
+                    var data = await response.Content.ReadAsAsync<List<AddressDto>>();
                     //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
                     apiresponse = data;
                 }
@@ -97,7 +97,7 @@ namespace BarberWebApp.Services
         }
 
 
-        public async Task<CreateAddressDto> LinkAddress((string,string) newLink)
+        public async Task<CreateAddressDto> LinkAddress(LinkAddressDto newLink)
         {
             IEnumerable<CreateBarberDto> Addresses = null;
 
@@ -109,18 +109,18 @@ namespace BarberWebApp.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var newbarberJson = Newtonsoft.Json.JsonConvert.SerializeObject(newAddress);
+                var newbarberJson = Newtonsoft.Json.JsonConvert.SerializeObject(newLink);
                 var payload = new StringContent(newbarberJson, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage result = await client.PostAsync(apiUrl, payload);
 
                 //result.EnsureSuccessStatusCode();
 
-                var apiresponse = new List<CreateAddressDto>();
+                var apiresponse = new CreateAddressDto();
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var data = await result.Content.ReadAsAsync<List<CreateAddressDto>>();
+                    var data = await result.Content.ReadAsAsync<CreateAddressDto>();
                     //var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
                     apiresponse = data;
                 }

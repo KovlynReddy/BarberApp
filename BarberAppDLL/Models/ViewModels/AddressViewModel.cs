@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BarberAppDLL.Models.Dto
+namespace BarberAppDLL.Models.ViewModels
 {
-    public class AddressDto : BaseDto
+    public class AddressViewModel
     {
         public string Number { get; set; }
         public string Street { get; set; }
@@ -14,8 +14,6 @@ namespace BarberAppDLL.Models.Dto
         public string Country { get; set; }
         public string Lat { get; set; }
         public string lon { get; set; }
-
-        public string CreatorId { get; set; }
 
         public string Caption { get; set; }
         public string ModelGuid { get; set; }

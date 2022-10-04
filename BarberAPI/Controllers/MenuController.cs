@@ -98,7 +98,7 @@ namespace BarberAPI.Controllers
                     //ItemImage = newMenuItem.ItemImage,
                     //UserGuid = User.Identity.Name,
                     SKUCode = item.SKUCode,
-                    ModelGUID = new Guid().ToString(),
+                    ModelGUID = Guid.NewGuid().ToString(),
                     CreatedDateTime = DateTime.Now.ToString(),
                     CreatorId = User.Identity.Name,
                     //BarberGuid = User.Identity.Name,

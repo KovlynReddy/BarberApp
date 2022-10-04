@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BarberAPI.Data.DB;
 using BarberAppDLL.Models.DomainModel;
 using BarberAppDLL.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarberAPI.Controllers
 {
@@ -112,6 +113,26 @@ namespace BarberAPI.Controllers
             }
             return View(customer);
         }
+
+
+        [AllowAnonymous]
+        [Route("~/api/Customers/CreateDto")]
+        [HttpPost]
+        public async Task<IActionResult> CreateDto([FromBody] CreateCustomerDto barber)
+        {
+            Customer newBarber = new Customer
+            {
+                CustomerEmail = barber.CustomerEmail,//
+                CustomerName = barber.CustomerName,//
+                ModelGUID = Guid.NewGuid().ToString(),
+                CreatedDateTime = DateTime.Now.ToString(),
+                CustomerAddress = ""
+            };
+            _context.Add(newBarber);
+            await _context.SaveChangesAsync();
+            return Ok(newBarber);
+        }
+
 
         // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
