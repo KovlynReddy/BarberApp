@@ -3,14 +3,14 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Link" asp-controller="Address">
+        <form asp-action="LinkAddress" asp-controller="Address" method="post" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row">
 
             <div class="form-group">
                 <label asp-for="People" class="control-label"></label>
-                <select class="custom-select mt-2"
+                <select asp-for="UserGuid" class="custom-select mt-2"
                         asp-items="@Model.People">
                     <option disable hidden>Any</option>
                 </select>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label asp-for="Addresses" class="control-label"></label>
-                <select class="custom-select mt-2"
+                <select asp-for="AddressGuid" class="custom-select mt-2"
                         asp-items="Model.Addresses">
                     <option disable hidden>Any</option>
                 </select>

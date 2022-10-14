@@ -101,7 +101,7 @@ namespace BarberWebApp.Services
         {
             IEnumerable<CreateBarberDto> Addresses = null;
 
-            string apiUrl = "https://localhost:44337/api/Address/LinkDto";
+            string apiUrl = "https://localhost:44337/api/Address/LinkAddress";
 
             using (HttpClient client = new HttpClient())
             {

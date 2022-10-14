@@ -6,10 +6,10 @@ namespace BarberAppDLL.Models.ViewModels
 {
     public class MapViewModel
     {
-        public List<string> Lats { get; set; }
-        public List<string> Longs { get; set; }
-        public List<string> Captions { get; set; }
-        public List<string> Names { get; set; }
+        public List<string> Lats { get; set; } = new List<string>();
+        public List<string> Longs { get; set; } = new List<string>();
+        public List<string> Captions { get; set; } = new List<string>();
+        public List<string> Names { get; set; } = new List<string>();
 
         public string CenterLat { get; set; }
         public string CenterLon { get; set; }

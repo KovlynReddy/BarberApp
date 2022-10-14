@@ -50,22 +50,22 @@ namespace BarberWebApp.Controllers
             model.Addresses = AllAddresses.Select(a =>
                                   new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
                                   {
-                                      Value = a.Caption.ToString(),
+                                      Value = a.ModelGuid,
                                       Text = a.ModelGuid
                                   }).ToList();
 
             model.People = AllCustomers.Select(a =>
                                   new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
                                   {
-                                      Value = a.CustomerEmail.ToString(),
-                                      Text = a.ModelGuid
+                                      Value = a.ModelGuid ,
+                                      Text = a.CustomerEmail.ToString()
                                   }).ToList();
 
             model.People.AddRange(AllVendors.Select(a =>
                                   new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
                                   {
-                                      Value = a.BarberEmail.ToString(),
-                                      Text = a.ModelGUID
+                                      Value = a.ModelGUID ,
+                                      Text = a.BarberEmail.ToString()
                                   }).ToList());
 
 
@@ -80,7 +80,7 @@ namespace BarberWebApp.Controllers
             link.AddressGuid = model.AddressGuid;
             link.UserGuid = model.UserGuid; 
 
-            _addressService.LinkAddress(link);
+            await _addressService.LinkAddress(link);
 
             return View();
         }
@@ -150,7 +150,8 @@ namespace BarberWebApp.Controllers
                     Country = newAddress.Country,
                     PostCode = newAddress.PostCode,
                     ModelGuid = newAddress.ModelGuid,
-                    CreatedDateTime = newAddress.CreatedDateTime,
+                    CreatedDateTime = DateTime.Now,
+                    CreatorGuid = User.Identity.Name,
                     Lat = newAddress.Lat,
                     lon = newAddress.lon,
                 };

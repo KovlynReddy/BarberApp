@@ -53,8 +53,10 @@ namespace BarberAPI.Data.DB
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<LogVisit> LogVisits { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<DM> Messages { get; set; }
+        public DbSet<FeedPost> Posts { get; set; }
 
-     
+
 
     }
 }

@@ -16,6 +16,7 @@ namespace BarberAppDLL.Models.Dto
         public DateTime CompletedDateTime { get; set; } 
         public int IsDeleted { get; set; }
         public string ModelGuid { get; set; }
+        public string CreatorGuid { get; set; }
         public string UserGuid { get; set; }
         public string BarberGuid { get; set; }
     }

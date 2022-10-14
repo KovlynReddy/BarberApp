@@ -476,3 +476,4 @@ C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\bin\Debug\netco
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Address\LinkAddress.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MapView.cshtml.g.cs
 C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Address\ViewAll.cshtml.g.cs
+C:\Users\User\OneDrive\Documents\Projects\BarberApp\BarberWebApp\obj\Debug\netcoreapp3.1\Razor\Views\Barber\_MapView.cshtml.g.cs

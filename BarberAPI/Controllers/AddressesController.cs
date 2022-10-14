@@ -25,12 +25,13 @@ namespace BarberAPI.Controllers
 
 
         [HttpPost]
+        [Route("~/api/Address/LinkAddress")]
         public async Task<IActionResult> LinkAddress(LinkAddressDto link)
         {
             var address = _context.Addresses.FirstOrDefault(m=>m.ModelGUID == link.AddressGuid);
 
             var person = _context.Customers.FirstOrDefault(m => m.ModelGUID == link.UserGuid);
-            if (person.CustomerName == "" || person == new Customer())
+            if (person == null || person == new Customer())
             {
                 var barber = _context.Barbers.FirstOrDefault(m => m.ModelGUID == link.UserGuid);
                 barber.AddressGuid = link.AddressGuid;
@@ -46,7 +47,7 @@ namespace BarberAPI.Controllers
                 _context.SaveChanges();
             }
 
-            address.CreatorId = link.UserGuid;
+            address.UserGuid = link.UserGuid;
 
             _context.Update(address);
             _context.Entry(address).State = EntityState.Modified;
@@ -140,7 +141,7 @@ namespace BarberAPI.Controllers
         [AllowAnonymous]
         [Route("~/api/Address/CreateDto")]
         [HttpPost]
-        public async Task<IActionResult> CreateDto([FromBody] CreateAddressDto newAddressDto)
+        public async Task<IActionResult> CreateDto(CreateAddressDto newAddressDto)
         {
             Address newAddress = new Address
             {
@@ -153,7 +154,9 @@ namespace BarberAPI.Controllers
                 ModelGUID = Guid.NewGuid().ToString(),
                 CreatedDateTime = newAddressDto.CreatedDateTime.ToString(),
                 Lat = newAddressDto.Lat,
-                lon = newAddressDto.lon, 
+                lon = newAddressDto.lon,
+                CreatorId = newAddressDto.CreatorGuid,
+                UserGuid = newAddressDto.UserGuid,
             };
 
             _context.Add(newAddress);
@@ -259,7 +262,8 @@ namespace BarberAPI.Controllers
                     ModelGuid = item.ModelGUID,
                     CreatedDateTime = DateTime.Parse( item.CreatedDateTime ),
                     Lat = item.Lat,
-                    lon = item.lon
+                    lon = item.lon,
+                    UserGuid = item.UserGuid
                 };
 
                 response.Add(Address);

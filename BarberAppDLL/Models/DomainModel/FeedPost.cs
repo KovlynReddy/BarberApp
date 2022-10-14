@@ -4,7 +4,11 @@ using System.Text;
 
 namespace BarberAppDLL.Models.DomainModel
 {
-    public class FeedPost
+    public class FeedPost : BaseModel
     {
+        public string SenderGuid { get; set; }
+        public string RecieverGuid { get; set; }
+        public string GroupGuid { get; set; }
+        public string Message { get; set; }
     }
 }

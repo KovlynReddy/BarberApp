@@ -16,6 +16,8 @@ namespace BarberAppDLL.Models.DomainModel
         public string Name { get; set; }
         public string Caption { get; set; }
 
+        public string UserGuid { get; set; }
+
         public string Lat { get; set; }
         public string lon { get; set; }
     }
